@@ -1,4 +1,4 @@
-#include <iostream>
+
 #include <GL/glut.h>
 #include <math.h>
 #include <sstream>
@@ -52,9 +52,15 @@ int checkwinner()
 void changeplayer()
 {
 	if(currplayer == 1)
+	{
 		currplayer = 2;
+		message = (char*) "Player 2 turn.";
+	}
 	else
+	{
 		currplayer = 1;
+		message = (char*) "Player 1 turn.";
+	}
 }
 
 
