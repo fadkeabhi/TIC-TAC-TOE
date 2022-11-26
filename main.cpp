@@ -2,13 +2,15 @@
 #include <GL/glut.h>
 #include <math.h>
 #include <sstream>
+#include <string.h>
 #define pi 3.142857
 
 int r,c,win1=0,win2=0,draw=0;
 int pos[3][3];
 int currplayer;
-char* message = (char*) "Use WASD keys to move";
+char* message = (char*) "Use WASD keys to move and Enter to Select.";
 char* message1;
+std::string temp;
 
 bool iscomplete()
 {
@@ -82,12 +84,14 @@ void game()
 	if(winner==1)
 	{
 		message = (char*) "Player 1 won.";
+		win1++;
 		gameinit();
 		
 	}
 	else if(winner==2)
 	{
 		message = (char*) "Player 2 won.";
+		win2++;
 		gameinit();
 	}
 	else
@@ -95,6 +99,7 @@ void game()
 		if(iscomplete())
 		{
 			message = (char*) "Game Draw.";
+			draw++;
 			gameinit();
 		}
 	}
@@ -114,9 +119,9 @@ void drawBitmapText(char* text, float x, float y, float z) {
     }
 }
 void msg(){
-//	char* temp = (char*) "Winning Status: ";
-//	message1 = (char*)temp + (char*)temp;
-//	drawBitmapText(message1, -450.0f, 460.0f, -0.0f);
+	temp = "Winnings : Player 1 = " + std::to_string(win1) + "  Player 2 = " + std::to_string(win2) + "  Draw = " + std::to_string(draw);
+	message1 = (char*) temp.c_str();
+	drawBitmapText(message1, -450.0f, 460.0f, -0.0f);
 	drawBitmapText(message, -450.0f, -490.0f, -0.0f);
 }
 
